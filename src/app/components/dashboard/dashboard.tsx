@@ -35,7 +35,7 @@ const Dashboard = () => {
                             </li>
                             <li className='flex gap-4 flex-row'>
                             <Image src={Leaf} className='h-4' alt="" width={20} height={50} style={{width:'auto' }} />
-                                Writing can help you process the emotional toll and provide a genuine account of what's truly going on with you.
+                                Writing can help you process the emotional toll and provide a genuine account of what`&apos;`s truly going on with you.
                             </li>
                         </ul>
                     </div>
