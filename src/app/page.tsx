@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import Header from './components/header/header'
+import Header from './components/header/header';
+import Dashboard from './components/dashboard/dashboard';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
           <span className='text-black text-base font-normal'> every detail of</span> your medical journey 
           <span className='text-black text-base font-normal'> in your</span> own words</h2>
       </section>
+      <Dashboard />
     </main>
   )
 }
