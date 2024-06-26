@@ -1,6 +1,12 @@
 import Header from './components/header/header';
 import Dashboard from './components/dashboard/dashboard';
 
+/**
+ * Renders the Landing Page, which displays a header, a section with a title,
+ * and a dashboard of prompts. The header is displayed without the back button.
+ *
+ * @return {JSX.Element} The Home component.
+ */
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col p-8 md:p-24 md:pt-8">
