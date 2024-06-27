@@ -32,11 +32,11 @@ const Dashboard = () => {
                     <h3 className='underline decoration-wavy decoration-2 text-primaryGreen font-semibold text-2xl mt-12 text-center md:text-start'>Why Journal</h3>
                     <ul className='flex gap-4 flex-col mt-6'>
                         <li className='flex gap-4 flex-row'>
-                            <Image src={Leaf} className='h-4' alt="" width={20} height={50} style={{width:'auto' }} />
+                            <Image src={Leaf} className='h-4 mt-2' alt="" width={20} height={50} style={{width:'auto' }} />
                             Struggling to remember and communicate all your health episodes to a doctor?
                         </li>
                         <li className='flex gap-4 flex-row'>
-                        <Image src={Leaf} className='h-4' alt="" width={20} height={50} style={{width:'auto' }} />
+                        <Image src={Leaf} className='h-4 mt-2' alt="" width={20} height={50} style={{width:'auto' }} />
                             Writing can help you process the emotional toll and provide a genuine account of what&apos;s truly going on with you.
                         </li>
                     </ul>
