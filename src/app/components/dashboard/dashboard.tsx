@@ -27,7 +27,7 @@ const Dashboard = () => {
                 <div className='flex justify-center flex-col-reverse md:flex-row lg:w-2/3 md:mx-auto'>
                     <Image src={Diary} className='h-40/' alt="" width={200} height={200} style={{width:'auto', height:'20rem' }} />
                     <div>
-                        <h3 className='underline text-primaryGreen font-semibold text-2xl mt-12 text-center md:text-start'>Why Journal</h3>
+                        <h3 className='underline decoration-wavy decoration-2 underline-offset-4  text-primaryGreen font-semibold text-2xl mt-12 text-center md:text-start'>Why Journal</h3>
                         <ul className='flex gap-4 flex-col mt-6'>
                             <li className='flex gap-4 flex-row'>
                                 <Image src={Leaf} className='h-4' alt="" width={20} height={50} style={{width:'auto' }} />
