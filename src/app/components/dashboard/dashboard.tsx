@@ -12,8 +12,8 @@ import Leaf from '../../images/leaf.png';
 const Dashboard = () => {
     return (
         <section className='flex flex-col'>            
-            <h3 className='text-center text-primaryGreen font-semibold text-2xl mt-12'>Click a writing prompt below</h3>    
             <div className='flex flex-col items-start mx-auto'>
+                <h3 className='text-left text-primaryGreen font-semibold text-2xl mt-12'>Click a writing prompt below</h3>    
                 <DashboardPrompt content="FreeStyle"/>
                 <DashboardPrompt content="Doctor/Hospital Visit"/> 
                 <DashboardPrompt content="Wellness Check-in"/>
