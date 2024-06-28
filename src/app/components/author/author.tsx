@@ -27,8 +27,10 @@ const Author = () => {
                         <p className="text-base text-slate-400 text-center">Click to Open</p>
                     }
                 </summary>
-                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen" placeholder="Recount your doctor's visit. What happened, in your own words..." />
             </details>
+            {showContent &&
+                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen" placeholder="Recount your doctor's visit. What happened, in your own words..." />
+            }
             <hr className="border-t border-gray-300 my-4" />
 
             <details onClick={(e) =>toggleSummary(e)} open={showSummary}>
@@ -38,8 +40,10 @@ const Author = () => {
                         <p className="text-base text-slate-400 text-center">Click to Open</p>
                     }
                 </summary>
-                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen" placeholder="Recount your doctor's visit. What happened, in your own words..." />
             </details>
+            {showSummary &&
+                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen" placeholder="In 50 characters or less, please summarize what happened." />
+            }
             <hr className="border-t border-gray-300 my-4" />
             <div className="flex justify-center">
                 <label htmlFor="date" className="text-primaryGreen hidden">Date</label>
