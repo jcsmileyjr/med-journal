@@ -4,27 +4,26 @@ import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
 const Author = () => {
-    const [showSummary, setShowSummary] = useState(true);
+    const [showSummary, setShowSummary] = useState(false);
+    const [showContent, setShowContent] = useState(true);
 
-    const toggleSummary = () => {
-        console.log(showSummary);
-        setShowSummary(!showSummary);
-    }
-
-    const showTitle = () => {
-        console.log("showTitle rans")
-        if(!showSummary) {
-            return false;
+    const toggleSummary = (e: any) => {
+        e.preventDefault(); // Prevent the default behavior of the details element
+        if (showContent) {
+            setShowSummary(true);
+            setShowContent(false);
         } else {
-            return true;
+            setShowSummary(false);
+            setShowContent(true);
         }
     }
+
     return(
         <section>
-            <details open={true}>
+            <details onClick={(e) =>toggleSummary(e)} open={showContent}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
                     <h2 className="text-center text-pretty">Let's talk about your doctor/hospital visit</h2>
-                    {!showSummary &&
+                    {showSummary &&
                         <p className="text-base text-slate-400 text-center">Click to Open</p>
                     }
                 </summary>
@@ -32,10 +31,10 @@ const Author = () => {
             </details>
             <hr className="border-t border-gray-300 my-4" />
 
-            <details open={false}>
+            <details onClick={(e) =>toggleSummary(e)} open={showSummary}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
                     <h2 className="text-center text-pretty">Please provide a brief summary for the title</h2>
-                    {showSummary &&
+                    {showContent &&
                         <p className="text-base text-slate-400 text-center">Click to Open</p>
                     }
                 </summary>
