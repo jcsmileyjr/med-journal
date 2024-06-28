@@ -1,4 +1,5 @@
 "use client"
+import moment from 'moment'; // NPM module that converts date objects to strings
 import {useState} from 'react';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
@@ -6,6 +7,7 @@ import SubmitIcon from '../../images/submit-icon.png';
 const Author = () => {
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
+    const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
 
     const toggleSummary = (e: any) => {
         e.preventDefault(); // Prevent the default behavior of the details element
@@ -47,7 +49,7 @@ const Author = () => {
             <hr className="border-t border-gray-300 my-4" />
             <div className="flex justify-center">
                 <label htmlFor="date" className="text-primaryGreen hidden">Date</label>
-                <input id="date" type="date" className="appearance-none list-none mb-4 text-primaryGreen" />
+                <input value={logDate} id="date" onChange={(e) => setLogDate(e.target.value)} type="date" className="appearance-none list-none mb-4 text-primaryGreen" />
             </div>
             <div className='flex justify-center mt-6'>
                 <Image src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
