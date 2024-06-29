@@ -46,7 +46,12 @@ const Author = ({content}: { content: string }) => {
                 </summary>
             </details>
             {showSummary &&
-                <textarea name="userSummary" value={userSummary} onChange={(e) =>setUserSummary(e.target.value)} className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="In 50 characters or less, please summarize what happened." />
+                <>
+                    <textarea maxLength={50} name="userSummary" value={userSummary} onChange={(e) =>setUserSummary(e.target.value)} className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="In 50 characters or less, please summarize what happened." />
+                    <div className='flex justify-end'>
+                        <p>{userSummary.length}/50</p>
+                    </div>
+                </>
             }
             <hr className="border-t border-gray-300 my-4" />
             <div className="flex justify-center">
