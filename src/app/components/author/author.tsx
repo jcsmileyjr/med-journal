@@ -7,6 +7,8 @@ import SubmitIcon from '../../images/submit-icon.png';
 const Author = ({content}: { content: string }) => {
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
+    const [userContent, setUserContent] = useState('');
+    const [userSummary, setUserSummary] = useState('');
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
 
     const toggleSummary = (e: any) => {
@@ -31,7 +33,7 @@ const Author = ({content}: { content: string }) => {
                 </summary>
             </details>
             {showContent &&
-                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="What happened, in your own words..." />
+                <textarea name="userContent" value={userContent} onChange={(e) =>setUserContent(e.target.value)} className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="What happened, in your own words..." />
             }
             <hr className="border-t border-gray-300 my-4" />
 
@@ -44,7 +46,7 @@ const Author = ({content}: { content: string }) => {
                 </summary>
             </details>
             {showSummary &&
-                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="In 50 characters or less, please summarize what happened." />
+                <textarea name="userSummary" value={userSummary} onChange={(e) =>setUserSummary(e.target.value)} className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="In 50 characters or less, please summarize what happened." />
             }
             <hr className="border-t border-gray-300 my-4" />
             <div className="flex justify-center">
