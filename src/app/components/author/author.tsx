@@ -26,12 +26,12 @@ const Author = ({content}: { content: string }) => {
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
                     <h2 className="text-center text-pretty">Let's talk about your {(content).toLowerCase()}</h2>
                     {showSummary &&
-                        <p className="text-base text-slate-400 text-center">Click to Open</p>
+                        <p className="text-base text-black text-center">Click to Open</p>
                     }
                 </summary>
             </details>
             {showContent &&
-                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen" placeholder="What happened, in your own words..." />
+                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="What happened, in your own words..." />
             }
             <hr className="border-t border-gray-300 my-4" />
 
@@ -39,12 +39,12 @@ const Author = ({content}: { content: string }) => {
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
                     <h2 className="text-center text-pretty">Please provide a brief summary for the title</h2>
                     {showContent &&
-                        <p className="text-base text-slate-400 text-center">Click to Open</p>
+                        <p className="text-base text-black text-center">Click to Open</p>
                     }
                 </summary>
             </details>
             {showSummary &&
-                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen" placeholder="In 50 characters or less, please summarize what happened." />
+                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="In 50 characters or less, please summarize what happened." />
             }
             <hr className="border-t border-gray-300 my-4" />
             <div className="flex justify-center">
