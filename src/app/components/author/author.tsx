@@ -4,7 +4,7 @@ import {useState} from 'react';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
-const Author = () => {
+const Author = ({content}: { content: string }) => {
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
@@ -24,14 +24,14 @@ const Author = () => {
         <section>
             <details onClick={(e) =>toggleSummary(e)} open={showContent}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
-                    <h2 className="text-center text-pretty">Let's talk about your doctor/hospital visit</h2>
+                    <h2 className="text-center text-pretty">Let's talk about your {(content).toLowerCase()}</h2>
                     {showSummary &&
                         <p className="text-base text-slate-400 text-center">Click to Open</p>
                     }
                 </summary>
             </details>
             {showContent &&
-                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen" placeholder="Recount your doctor's visit. What happened, in your own words..." />
+                <textarea className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen" placeholder="What happened, in your own words..." />
             }
             <hr className="border-t border-gray-300 my-4" />
 

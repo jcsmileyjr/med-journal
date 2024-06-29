@@ -14,7 +14,7 @@ const Dashboard = () => {
         <section className='flex flex-col'>            
             <div className='flex flex-col items-start mx-auto'>
                 <h3 className='text-left text-primaryGreen font-semibold text-2xl mt-12'><span className='underline decoration-wavy decoration-2'>Click</span> a writing prompt below</h3>    
-                <DashboardPrompt content="FreeStyle"/>
+                <DashboardPrompt content="What&apos;s on your mind"/>
                 <DashboardPrompt content="Doctor/Hospital Visit"/> 
                 <DashboardPrompt content="Wellness Check-in"/>
                 <DashboardPrompt content="What hurts (body sore/injury)"/>
