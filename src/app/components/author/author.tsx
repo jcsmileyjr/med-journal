@@ -1,5 +1,7 @@
 "use client"
+import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import moment from 'moment'; // NPM module that converts date objects to strings
+import saveData from '@/app/utils/saveData';
 import {useState} from 'react';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
@@ -20,6 +22,19 @@ const Author = ({content}: { content: string }) => {
             setShowSummary(false);
             setShowContent(true);
         }
+    }
+
+    const handleSubmit = () => {
+        // create a data object with the userContent, userSummary, tag, and logDate
+        const data = {
+            "content": userContent,
+            "summary": userSummary,
+            "tag": content,
+            "date" : moment(logDate).format('MM-DD-YYYY'),
+            "id": uuidv4()
+        };
+
+        saveData(data);
     }
 
     return(
@@ -59,7 +74,7 @@ const Author = ({content}: { content: string }) => {
                 <input value={logDate} id="date" onChange={(e) => setLogDate(e.target.value)} type="date" className="appearance-none list-none mb-4 text-primaryGreen" />
             </div>
             <div className='flex justify-center mt-6'>
-                <Image src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
+                <Image onClick={() => handleSubmit()} src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
             </div>
         </section>
     )

@@ -26,9 +26,10 @@ Journal data point
 - **Jest** serves as a component testing framework. 
 - **Netlify** is the hosting platform employed for hosting the application.
 - **React-Secure-Storage** is a library specializing in encrypting local data and providing a unique key for each browser.
+- **uuid** a library to create unique ids
 
 ## Development Thoughts
 1. If the user chooses to password protect the app, then a pop up should start the app.
-2. Data is saved via indexDB storage.
-3. IndexDB storage is protected through encryption, and a unique secure key is generated for each browser using the react-secure-storage library. 
+2. Data is saved via lcoal storage.
+3. Local storage is protected through encryption, and a unique secure key is generated for each browser using the react-secure-storage library. 
 2. Data is saved from the journal to a React's reducer that shares that information with the logs page. 

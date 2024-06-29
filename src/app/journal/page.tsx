@@ -1,6 +1,5 @@
 import Header from '../components/header/header';
 import Author from '../components/author/author';
-import { useSearchParams } from 'next/navigation';
 
 const Journal = ({searchParams}: { [key: string]: string }) => {
     return (
