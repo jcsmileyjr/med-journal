@@ -24,7 +24,7 @@ const Author = ({content}: { content: string }) => {
         <section>
             <details onClick={(e) =>toggleSummary(e)} open={showContent}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
-                    <h2 className="text-center text-pretty">Let's talk about your {(content).toLowerCase()}</h2>
+                    <h2 className="text-center text-xl text-pretty">Let's talk about your {(content).toLowerCase()}</h2>
                     {showSummary &&
                         <p className="text-base text-black text-center">Click to Open</p>
                     }
@@ -37,7 +37,7 @@ const Author = ({content}: { content: string }) => {
 
             <details onClick={(e) =>toggleSummary(e)} open={showSummary}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
-                    <h2 className="text-center text-pretty">Please provide a brief summary for the title</h2>
+                    <h2 className="text-center text-xl text-pretty">Please provide a brief summary for the title</h2>
                     {showContent &&
                         <p className="text-base text-black text-center">Click to Open</p>
                     }
