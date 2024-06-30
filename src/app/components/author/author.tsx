@@ -16,7 +16,11 @@ const Author = ({content}: { content: string }) => {
 
     useEffect(() => {
         // Set the tag to the content if the content is undefined
-        setTag(content);
+        if (content === undefined) {
+            setTag('What&apos;s on your mind');
+        } else {
+            setTag(content);
+        }
     }, [content]);
 
     const toggleSummary = (e: any) => {
