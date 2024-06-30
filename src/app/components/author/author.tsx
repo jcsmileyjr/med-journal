@@ -2,11 +2,14 @@
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import moment from 'moment'; // NPM module that converts date objects to strings
 import saveData from '@/app/utils/saveData';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
 const Author = ({content}: { content: string }) => {
+    const router = useRouter() // Routes a user to another page
+
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
     const [userContent, setUserContent] = useState('');
@@ -34,11 +37,11 @@ const Author = ({content}: { content: string }) => {
             "id": uuidv4()
         };
 
-        saveData(data);
+        saveData(data, router);
     }
 
     return(
-        <section>
+        <section className='mt-8 md:w-2/3 md:mx-auto'>
             <details onClick={(e) =>toggleSummary(e)} open={showContent}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
                     <h2 className="text-center text-xl text-pretty">Let&apos;s talk about your {(content).toLowerCase()}</h2>
@@ -48,7 +51,7 @@ const Author = ({content}: { content: string }) => {
                 </summary>
             </details>
             {showContent &&
-                <textarea name="userContent" value={userContent} onChange={(e) =>setUserContent(e.target.value)} className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="What happened, in your own words..." />
+                <textarea name="userContent" value={userContent} onChange={(e) =>setUserContent(e.target.value)} className="w-full h-96 border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="What happened, in your own words..." />
             }
             <hr className="border-t border-gray-300 my-4" />
 
@@ -62,7 +65,7 @@ const Author = ({content}: { content: string }) => {
             </details>
             {showSummary &&
                 <>
-                    <textarea maxLength={50} name="userSummary" value={userSummary} onChange={(e) =>setUserSummary(e.target.value)} className="w-full h-96 h-full border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="In 50 characters or less, please summarize what happened." />
+                    <textarea maxLength={50} name="userSummary" value={userSummary} onChange={(e) =>setUserSummary(e.target.value)} className="w-full h-96 border-2 border-black rounded-lg p-2 bg-secondaryGreen placeholder-gray-700" placeholder="In 50 characters or less, please summarize what happened." />
                     <div className='flex justify-end'>
                         <p>{userSummary.length}/50</p>
                     </div>
