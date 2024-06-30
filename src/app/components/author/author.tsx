@@ -7,21 +7,11 @@ import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
 const Author = ({content}: { content: string }) => {
-    const [tag, setTag] = useState('What&apos;s on your mind'); // In response to to build issue where content is undefined
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
     const [userContent, setUserContent] = useState('');
     const [userSummary, setUserSummary] = useState('');
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
-
-    useEffect(() => {
-        // Set the tag to the content if the content is undefined
-        if (content === undefined) {
-            setTag('What&apos;s on your mind');
-        } else {
-            setTag(content);
-        }
-    }, [content]);
 
     const toggleSummary = (e: any) => {
         e.preventDefault(); // Prevent the default behavior of the details element
@@ -51,7 +41,7 @@ const Author = ({content}: { content: string }) => {
         <section>
             <details onClick={(e) =>toggleSummary(e)} open={showContent}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
-                    <h2 className="text-center text-xl text-pretty">Let&apos;s talk about your {(tag).toLowerCase()}</h2>
+                    <h2 className="text-center text-xl text-pretty">Let&apos;s talk about your {(content).toLowerCase()}</h2>
                     {showSummary &&
                         <p className="text-base text-black text-center">Click to Open</p>
                     }
