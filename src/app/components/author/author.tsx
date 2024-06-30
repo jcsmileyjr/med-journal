@@ -2,18 +2,22 @@
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import moment from 'moment'; // NPM module that converts date objects to strings
 import saveData from '@/app/utils/saveData';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
 const Author = ({content}: { content: string }) => {
-    let tag = content !== undefined ? content : 'FreeStyle'; // In response to to build issue where content is undefined
-
+    const [tag, setTag] = useState('What&apos;s on your mind'); // In response to to build issue where content is undefined
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
     const [userContent, setUserContent] = useState('');
     const [userSummary, setUserSummary] = useState('');
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
+
+    useEffect(() => {
+        // Set the tag to the content if the content is undefined
+        setTag(content);
+    }, [content]);
 
     const toggleSummary = (e: any) => {
         e.preventDefault(); // Prevent the default behavior of the details element
