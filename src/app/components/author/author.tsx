@@ -6,7 +6,7 @@ import {useState} from 'react';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
-const Author = ({content}: { content: string }) => {
+const Author = ({content = "FreeStyle"}: { content: string }) => {
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
     const [userContent, setUserContent] = useState('');
