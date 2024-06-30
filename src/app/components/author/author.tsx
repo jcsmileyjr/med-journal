@@ -38,7 +38,7 @@ const Author = ({content}: { content: string }) => {
     }
 
     return(
-        <section className='mt-8'>
+        <section className='mt-8 md:w-2/3 md:mx-auto'>
             <details onClick={(e) =>toggleSummary(e)} open={showContent}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
                     <h2 className="text-center text-xl text-pretty">Let&apos;s talk about your {(content).toLowerCase()}</h2>
