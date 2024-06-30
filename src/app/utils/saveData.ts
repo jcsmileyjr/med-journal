@@ -6,7 +6,7 @@ import ContentType from '../types/contentType';
  *
  * @param {ContentType} data - The data to be saved.
  */
-const saveData = (data: ContentType) => {
+const saveData = (data: ContentType, router: any) => {    
     let previousData = secureLocalStorage.getItem("medical-journal");
 
     if (typeof previousData === "string") {
@@ -16,6 +16,7 @@ const saveData = (data: ContentType) => {
     } else {
         secureLocalStorage.setItem("medical-journal", JSON.stringify([data]));
     }
+    router.push("/logs")
 }
 
 export default saveData;

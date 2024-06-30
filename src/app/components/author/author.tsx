@@ -2,11 +2,14 @@
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import moment from 'moment'; // NPM module that converts date objects to strings
 import saveData from '@/app/utils/saveData';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
 const Author = ({content}: { content: string }) => {
+    const router = useRouter() // Routes a user to another page
+
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
     const [userContent, setUserContent] = useState('');
@@ -34,7 +37,7 @@ const Author = ({content}: { content: string }) => {
             "id": uuidv4()
         };
 
-        saveData(data);
+        saveData(data, router);
     }
 
     return(
