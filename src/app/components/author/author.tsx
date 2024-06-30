@@ -7,7 +7,7 @@ import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
 const Author = ({content}: { content: string }) => {
-    let tag = content ? content : 'FreeStyle'; // In response to to build issue where content is undefined
+    let tag = content === undefined ? content : 'FreeStyle'; // In response to to build issue where content is undefined
 
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
