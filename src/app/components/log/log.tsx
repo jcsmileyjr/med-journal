@@ -21,7 +21,7 @@ const Log = ({data}: {data: ContentType}) => {
                     <p>{data.tag}</p>
                 </div>
                 <div className="flex flex-col mt-4">
-                    <p>{data.summary}</p>
+                    <p className='font-bold text-primaryGreen'>{data.summary}</p>
                     <p className={` ${showOpenMessage ? 'block' : 'hidden'}`}>{data.content.substring(0, 50)} ...</p>
                     { showOpenMessage &&
                         <div className="flex start gap-4 mt-2">
