@@ -9,7 +9,9 @@ import ProfileIcon from '../../images/profile.jpg';
 const Header = ({displayBack}: {displayBack: boolean}) => {
     return (
         <section className='flex flex-row items-center justify-between'>
-            <Image src={BookIcon} className='h-4' alt="" width={20} height={50} style={{width:'auto', height:'auto' }} />
+            <Link href='/'>
+                <Image src={BookIcon} className='h-4' alt="" width={20} height={50} style={{width:'auto', height:'auto' }} />
+            </Link>
             <h1 className='text-primaryGreen font-bold text-3xl'>Medical Journal</h1>
             {displayBack && <Link href='/'><p className='text-red-400 text-base'>Back</p></Link>}
             {!displayBack && 
