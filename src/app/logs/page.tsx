@@ -20,7 +20,7 @@ const Logs = () => {
         <main className="flex min-h-screen flex-col p-8 md:p-24 md:pt-8">
             <Header displayBack={true} />
 
-            <section className='mt-8 flex flex-col gap-4'>
+            <section className='mt-8 md:w-2/3 md:mx-auto flex flex-col gap-4'>
                 {content.length < 1 && <h1>Loading...</h1>}
                 {content.length > 0 &&
                     content.map((log) => (
