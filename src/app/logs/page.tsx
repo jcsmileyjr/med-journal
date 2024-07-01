@@ -1,4 +1,5 @@
 "use client"
+import moment from 'moment'; // NPM module that converts date objects to strings
 import {useState, useEffect} from 'react';
 import getData from '../utils/getData';
 import Header from '../components/header/header';
@@ -11,7 +12,10 @@ const Logs = () => {
     useEffect(() => {
         const fetchData = async () => {
             const data: ContentType[] = await getData();
-            setContent(data);
+            console.log("raw data", data);
+            let sortedLogs = data.sort((a, b) => moment(b.date, 'MM-DD-YYYY').diff(moment(a.date, 'MM-DD-YYYY')));
+            console.log("sorted data", sortedLogs);
+            setContent(sortedLogs);
         }
         fetchData();
     }, [])
