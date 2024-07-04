@@ -8,7 +8,7 @@ import ProfileIcon from '../../images/profile.jpg';
  */
 const Header = ({displayBack}: {displayBack: boolean}) => {
     return (
-        <section className='flex flex-row items-center justify-between'>
+        <header className='flex flex-row items-center justify-between'>
             <Link href='/'>
                 <Image src={BookIcon} className='h-4' alt="" width={20} height={50} style={{width:'auto', height:'auto' }} />
             </Link>
@@ -19,7 +19,7 @@ const Header = ({displayBack}: {displayBack: boolean}) => {
                     <Image src={ProfileIcon} className='h-4' alt="Link to setting page" width={20} height={50} style={{width:'auto', height:'auto' }} />
                 </Link>
             }
-        </section>
+        </header>
     )
 }
 
