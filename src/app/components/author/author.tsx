@@ -3,10 +3,12 @@ import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import moment from 'moment'; // NPM module that converts date objects to strings
 import saveData from '@/app/utils/saveData';
 import getData from '../../utils/getData';
+import editData from '@/app/utils/editData';
 import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
+import ContentType from '@/app/types/contentType';
 
 const Author = ({content, id}: { content: string, id: string, tag: string }) => {
     const router = useRouter() // Routes a user to another page
@@ -47,15 +49,28 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
 
     const handleSubmit = () => {
         // create a data object with the userContent, userSummary, tag, and logDate
-        const data = {
-            "content": userContent,
-            "summary": userSummary,
-            "tag": title,
-            "date" : moment(logDate).format('MM-DD-YYYY'),
-            "id": uuidv4()
-        };
+        let data: ContentType = {"content": "", "summary": "", "tag": "", "date": "", "id": ""};
+        if (id !== 'none') {
+            data = {
+                "content": userContent,
+                "summary": userSummary,
+                "tag": title,
+                "date" : moment(logDate).format('MM-DD-YYYY'),
+                "id": id
+            };
 
-        saveData(data, router);
+            editData(data, router);
+        } else {
+            data = {
+                "content": userContent,
+                "summary": userSummary,
+                "tag": title,
+                "date" : moment(logDate).format('MM-DD-YYYY'),
+                "id": uuidv4()
+            };
+            saveData(data, router);
+        }
+
     }
 
     return(
