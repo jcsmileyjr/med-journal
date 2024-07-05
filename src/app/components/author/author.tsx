@@ -2,12 +2,13 @@
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import moment from 'moment'; // NPM module that converts date objects to strings
 import saveData from '@/app/utils/saveData';
-import {useState} from 'react';
+import getData from '../../utils/getData';
+import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
-const Author = ({content}: { content: string }) => {
+const Author = ({content, id}: { content: string, id: string }) => {
     const router = useRouter() // Routes a user to another page
 
     const [showSummary, setShowSummary] = useState(false);
@@ -15,6 +16,20 @@ const Author = ({content}: { content: string }) => {
     const [userContent, setUserContent] = useState('');
     const [userSummary, setUserSummary] = useState('');
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
+
+    useEffect(() => {
+        if(id !== 'none') {
+            const data = getData();
+            const log= data.find((log) => log.id === id);
+            if (log !== undefined) {
+                setUserContent(log.content);
+                setUserSummary(log.summary);
+                const newDate = moment(log.date).format('YYYY-MM-DD')
+                setLogDate(newDate);
+                content = log.tag;
+            }
+        }
+    }, [content])
 
     const toggleSummary = (e: any) => {
         e.preventDefault(); // Prevent the default behavior of the details element
