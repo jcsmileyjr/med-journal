@@ -2,7 +2,9 @@
 import {useState} from 'react';
 import ContentType from "@/app/types/contentType";
 import Image from 'next/image'
+import Link from 'next/link';
 import Hand from '../../images/right-hand.png';
+import Edit from '../../images/edit.png';
 
 const Log = ({data}: {data: ContentType}) => {
     const [showOpenMessage, setShowOpenMessage] = useState(true);
@@ -32,6 +34,10 @@ const Log = ({data}: {data: ContentType}) => {
                 </div>
             </summary>
             <p className='mt-2'>{data.content}</p>
+            <Link role="link" href={`/editEntry/${data.id}/${data.tag}`} className="flex start gap-4 mt-2">
+                <Image src={Edit} className='h-2' alt="" width={20} height={25} style={{width:'auto', height:"1rem" }} />
+                <p>Click to Edit journal entry</p>
+            </Link>
         </details>
     )
 }

@@ -12,7 +12,7 @@ useRouter() {
 
 describe('Author', () => {
     it('renders correctly', () => {
-        render(<Author content="Wellness Check-in" />);
+        render(<Author content="Wellness Check-in" id={"none"} />);
         expect(screen.getByText("Let's talk about your wellness check-in")).toBeInTheDocument();
     });
 });

@@ -2,16 +2,17 @@ import  secureLocalStorage  from  "react-secure-storage";
 import ContentType from '../types/contentType';
 
 /**
- * Encrypts and Saves data of the medical journal to local storage.
+ * Encrypts and Edits data of the medical journal to local storage.
  *
  * @param {ContentType} data - The data to be saved.
  */
-const saveData = (data: ContentType, router: any) => {    
+const editData = (data: ContentType, router: any) => {    
     let previousData = secureLocalStorage.getItem("medical-journal");
-console.log("saveData ran", data);
+console.log("editData data", data);
     if (typeof previousData === "string") {
         let contentArray = JSON.parse(previousData);
-        contentArray.push(data);
+        const index = contentArray.findIndex((item: ContentType) => item.id === data.id);
+        contentArray[index] = data;
         secureLocalStorage.setItem("medical-journal", JSON.stringify(contentArray));
     } else {
         secureLocalStorage.setItem("medical-journal", JSON.stringify([data]));
@@ -19,4 +20,4 @@ console.log("saveData ran", data);
     router.push("/logs")
 }
 
-export default saveData;
+export default editData;
