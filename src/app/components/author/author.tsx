@@ -8,6 +8,7 @@ import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
+import BlackCheck from '../../images/BlackCheck.png'
 import ContentType from '@/app/types/contentType';
 
 const Author = ({content, id}: { content: string, id: string, tag: string }) => {
@@ -115,8 +116,13 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
                 <label htmlFor="date" className="text-black">Date</label>
             </div>
             <div className='flex flex-col items-center justify-center gap-4 mt-6'>
-                <Image onClick={() => handleSubmit()} src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
-                {submitError &&
+                {(userContent === '' || userSummary === '') &&
+                    <Image onClick={() => handleSubmit()} src={BlackCheck} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
+                }
+                {userContent !== '' && userSummary !== '' &&
+                    <Image onClick={() => handleSubmit()} src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
+                }
+                {submitError && (userContent === '' || userSummary === '') &&
                     <p className='text-red-800 text-base'>Must fill out all fields</p>
                 }                
             </div>
