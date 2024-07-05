@@ -8,6 +8,7 @@ import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
+import BlackCheck from '../../images/BlackCheck.png'
 import ContentType from '@/app/types/contentType';
 
 const Author = ({content, id}: { content: string, id: string, tag: string }) => {
@@ -19,6 +20,7 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
     const [userSummary, setUserSummary] = useState('');
     const [title, setTitle] = useState(content);
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
+    const [submitError, setSubmitError] = useState(false);
 
     useEffect(() => {
         // If there is an id, this means that the user is editing an entry
@@ -48,6 +50,10 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
     }
 
     const handleSubmit = () => {
+        if (userContent === '' || userSummary === '') {
+            setSubmitError(true);
+            return
+        }
         // create a data object with the userContent, userSummary, tag, and logDate
         let data: ContentType = {"content": "", "summary": "", "tag": "", "date": "", "id": ""};
         if (id !== 'none') {
@@ -109,8 +115,16 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
                 <input value={logDate} id="date" onChange={(e) => setLogDate(e.target.value)} type="date" className="appearance-none list-none text-primaryGreen" />
                 <label htmlFor="date" className="text-black">Date</label>
             </div>
-            <div className='flex justify-center mt-6'>
-                <Image onClick={() => handleSubmit()} src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
+            <div className='flex flex-col items-center justify-center gap-4 mt-6'>
+                {(userContent === '' || userSummary === '') &&
+                    <Image onClick={() => handleSubmit()} src={BlackCheck} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
+                }
+                {userContent !== '' && userSummary !== '' &&
+                    <Image onClick={() => handleSubmit()} src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
+                }
+                {submitError && (userContent === '' || userSummary === '') &&
+                    <p className='text-red-800 text-base'>Must fill out all fields</p>
+                }                
             </div>
         </section>
     )
