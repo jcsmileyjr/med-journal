@@ -8,28 +8,31 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 
-const Author = ({content, id}: { content: string, id: string }) => {
+const Author = ({content, id}: { content: string, id: string, tag: string }) => {
     const router = useRouter() // Routes a user to another page
 
     const [showSummary, setShowSummary] = useState(false);
     const [showContent, setShowContent] = useState(true);
     const [userContent, setUserContent] = useState('');
     const [userSummary, setUserSummary] = useState('');
+    const [title, setTitle] = useState(content);
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
 
     useEffect(() => {
+        // If there is an id, this means that the user is editing an entry
         if(id !== 'none') {
             const data = getData();
             const log= data.find((log) => log.id === id);
+            console.log("date", log?.date)
             if (log !== undefined) {
                 setUserContent(log.content);
                 setUserSummary(log.summary);
                 const newDate = moment(log.date).format('YYYY-MM-DD')
                 setLogDate(newDate);
-                content = log.tag;
+                setTitle(log.tag);
             }
         }
-    }, [content])
+    }, [])
 
     const toggleSummary = (e: any) => {
         e.preventDefault(); // Prevent the default behavior of the details element
@@ -47,7 +50,7 @@ const Author = ({content, id}: { content: string, id: string }) => {
         const data = {
             "content": userContent,
             "summary": userSummary,
-            "tag": content,
+            "tag": title,
             "date" : moment(logDate).format('MM-DD-YYYY'),
             "id": uuidv4()
         };
@@ -59,7 +62,7 @@ const Author = ({content, id}: { content: string, id: string }) => {
         <section className='mt-8 md:w-2/3 md:mx-auto'>
             <details onClick={(e) =>toggleSummary(e)} open={showContent}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
-                    <h2 className="text-center text-xl text-pretty">Let&apos;s talk about your {(content).toLowerCase()}</h2>
+                    <h2 className="text-center text-xl text-pretty">Let&apos;s talk about your {(title).toLowerCase()}</h2>
                     {showSummary &&
                         <p className="text-base text-black text-center">Click to Open</p>
                     }

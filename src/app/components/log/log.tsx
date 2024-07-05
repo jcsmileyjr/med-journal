@@ -34,7 +34,7 @@ const Log = ({data}: {data: ContentType}) => {
                 </div>
             </summary>
             <p className='mt-2'>{data.content}</p>
-            <Link role="link" href={`/editEntry/${data.id}`} className="flex start gap-4 mt-2">
+            <Link role="link" href={`/editEntry/${data.id}/${data.tag}`} className="flex start gap-4 mt-2">
                 <Image src={Edit} className='h-2' alt="" width={20} height={25} style={{width:'auto', height:"1rem" }} />
                 <p>Click to Edit journal entry</p>
             </Link>
