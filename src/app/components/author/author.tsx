@@ -72,9 +72,9 @@ const Author = ({content}: { content: string }) => {
                 </>
             }
             <hr className="border-t border-gray-300 my-4" />
-            <div className="flex justify-center">
-                <label htmlFor="date" className="text-primaryGreen hidden">Date</label>
-                <input value={logDate} id="date" onChange={(e) => setLogDate(e.target.value)} type="date" className="appearance-none list-none mb-4 text-primaryGreen" />
+            <div className="flex flex-col items-center justify-center mb-4">
+                <input value={logDate} id="date" onChange={(e) => setLogDate(e.target.value)} type="date" className="appearance-none list-none text-primaryGreen" />
+                <label htmlFor="date" className="text-black">Date</label>
             </div>
             <div className='flex justify-center mt-6'>
                 <Image onClick={() => handleSubmit()} src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />

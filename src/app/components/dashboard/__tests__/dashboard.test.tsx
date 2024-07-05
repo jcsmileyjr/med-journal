@@ -4,13 +4,13 @@ import Dashboard from '../dashboard';
 describe('Dashboard', () => {
     it('renders correctly', () => {
         render(<Dashboard />);
-        expect(screen.getByText('Click')).toBeInTheDocument();
+        expect(screen.getByText('Click a writing prompt below')).toBeInTheDocument();
     });
     it('renders a prompt', () => {
         render(<Dashboard />);
-        expect(screen.getByText('FreeStyle')).toBeInTheDocument();
+        expect(screen.getByText("What's on your mind")).toBeInTheDocument();
     });
-    it('renders a button link to the logs', () => {
+    it('renders a link to the logs', () => {
         render(<Dashboard />);
         expect(screen.getByText('View Logs')).toBeInTheDocument();
         const links: HTMLAnchorElement[] = screen.getAllByRole("link"); // create an array of links

@@ -9,7 +9,7 @@ const Setting = () => {
     return (
         <main className="flex min-h-screen flex-col p-8 md:p-24">
             <Header displayBack={true} />
-            Setting Page
+            <p className='text-3xl text-center  mt-8 text-red-600'>Work In Progress</p>
         </main>
     )
 }
