@@ -2,7 +2,7 @@
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import moment from 'moment'; // NPM module that converts date objects to strings
 import saveData from '@/app/utils/saveData';
-import getData from '../../utils/getData';
+import getData from '../../utils/getData'; // Returns an unenncrypted sorted (by date) array of journal entries from local storage
 import editData from '@/app/utils/editData';
 import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
@@ -12,7 +12,7 @@ import BlackCheck from '../../images/BlackCheck.png'
 import ContentType from '@/app/types/contentType';
 
 /**
- * Component that renders the Journal page that allows a user to create a journal entry. 
+ * Component that renders on the Journal page that allows a user to create a journal entry. 
  * @param {string} content - The tag of the journal entry. Can be 'none' (meaning not an previous entry)
  * @param {string} id - The id of the journal entry. Can be 'none' (meaning not an previous entry)
  * @returns 

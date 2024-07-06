@@ -2,9 +2,9 @@ import  secureLocalStorage  from  "react-secure-storage";
 import ContentType from '../types/contentType';
 
 /**
- * Encrypts and Edits data of the medical journal to local storage.
- *
- * @param {ContentType} data - The data to be saved.
+ * Encrypts and edits a journal entry to local storage. Afterward, redirects the user to the Logs page.
+ * @param {ContentType} data - The data to be edited and saved.
+ * @param {any} router - The router object.
  */
 const editData = (data: ContentType, router: any) => {    
     let previousData = secureLocalStorage.getItem("medical-journal");

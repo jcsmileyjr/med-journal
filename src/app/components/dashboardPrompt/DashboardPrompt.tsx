@@ -2,6 +2,10 @@ import Link from 'next/link';
 import Image from 'next/image'
 import Hand from '../../images/right-hand.png';
 
+/**
+ * Component that renders a link with a prompt (tag) to the Journal page.
+ * @param {string} content - The tag of the prompt.
+ */
 const DashboardPrompt = ({content}: {content: string}) => {
     return (
         <div className='mt-6 flex justify-center items-center'>
