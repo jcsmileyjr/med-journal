@@ -10,6 +10,7 @@ import Image from 'next/image'
 import SubmitIcon from '../../images/submit-icon.png';
 import BlackCheck from '../../images/BlackCheck.png'
 import ContentType from '@/app/types/contentType';
+import posthog from 'posthog-js'
 
 /**
  * Component that renders on the Journal & Edit pages that allows a user to create a journal entry. 
@@ -89,7 +90,7 @@ const Author = ({content, id}: { content: string, id: string}) => {
             };
             saveData(data, router);
         }
-
+        posthog.capture('journal_entry_submitted');
     }
 
     return(
