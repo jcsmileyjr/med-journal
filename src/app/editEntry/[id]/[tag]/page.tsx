@@ -1,8 +1,8 @@
 "use client"
-
 import Author from '../../../components/author/author';
 import Header from '../../../components/header/header';
-// {params: id}: {params: string}
+
+
 const EditEntry = ({ params }: { params: { id: string, tag: string } }) => {
     const { id, tag } = params;
     

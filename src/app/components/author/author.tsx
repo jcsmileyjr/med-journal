@@ -1,7 +1,7 @@
 "use client"
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import moment from 'moment'; // NPM module that converts date objects to strings
-import saveData from '@/app/utils/saveData';
+import saveData from '@/app/utils/saveData'; // Encrypts and saves a journal entry to local storage. Afterward, redirects the user to the Logs page.
 import getData from '../../utils/getData'; // Returns an unenncrypted sorted (by date) array of journal entries from local storage
 import editData from '@/app/utils/editData';
 import {useState, useEffect} from 'react';
@@ -12,9 +12,10 @@ import BlackCheck from '../../images/BlackCheck.png'
 import ContentType from '@/app/types/contentType';
 
 /**
- * Component that renders on the Journal page that allows a user to create a journal entry. 
- * @param {string} content - The tag of the journal entry. Can be 'none' (meaning not an previous entry)
- * @param {string} id - The id of the journal entry. Can be 'none' (meaning not an previous entry)
+ * Component that renders on the Journal & Edit pages that allows a user to create a journal entry. 
+ * @param {string} content - The tag of the blank journal entry used on the page title.
+ * @param {string} id - The id of the journal entry to be edited. Can be 'none' (meaning not an previous entry)
+ * @param {string} tag - The tag of the journal entry to be edited. Can be 'none' (meaning not an previous entry)
  * @returns 
  */
 const Author = ({content, id}: { content: string, id: string, tag: string }) => {
@@ -135,9 +136,12 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
 
             {/* Submit button UI */}
             <div className='flex flex-col items-center justify-center gap-4 mt-6'>
+                {/* Show the black checkmark if the user has not filled out the form */}
                 {(userContent === '' || userSummary === '') &&
                     <Image onClick={() => handleSubmit()} src={BlackCheck} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
                 }
+                
+                {/* Show the green checkmark if the user has filled out the form */}
                 {userContent !== '' && userSummary !== '' &&
                     <Image onClick={() => handleSubmit()} src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
                 }
