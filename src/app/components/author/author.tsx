@@ -1,16 +1,17 @@
 "use client"
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
+import posthog from 'posthog-js'
 import moment from 'moment'; // NPM module that converts date objects to strings
-import getData from '../../utils/getData'; // Returns an unenncrypted sorted (by date) array of journal entries from local storage
-import saveData from '@/app/utils/saveData'; // Encrypts and saves a journal entry to local storage. Afterward, redirects the user to the Logs page.
-import editData from '@/app/utils/editData'; // Encrypts and edits a journal entry to local storage. Afterward, redirects the user to the Logs page.
 import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
+import DeleteEntry from '../deleteEntry/deleteEntry';
+import getData from '../../utils/getData'; // Returns an unenncrypted sorted (by date) array of journal entries from local storage
+import saveData from '@/app/utils/saveData'; // Encrypts and saves a journal entry to local storage. Afterward, redirects the user to the Logs page.
+import editData from '@/app/utils/editData'; // Encrypts and edits a journal entry to local storage. Afterward, redirects the user to the Logs page.
 import SubmitIcon from '../../images/submit-icon.png';
 import BlackCheck from '../../images/BlackCheck.png'
 import ContentType from '@/app/types/contentType';
-import posthog from 'posthog-js'
 
 /**
  * Component that renders on the Journal & Edit pages that allows a user to create a journal entry. 
@@ -149,6 +150,9 @@ const Author = ({content, id}: { content: string, id: string}) => {
                     <p className='text-red-800 text-base'>Must fill out all fields</p>
                 }                
             </div>
+            {id !== 'none' &&
+                <DeleteEntry id={id} />
+            }
         </section>
     )
 }   
