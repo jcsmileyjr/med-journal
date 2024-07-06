@@ -90,7 +90,7 @@ const Author = ({content, id}: { content: string, id: string}) => {
             };
             saveData(data, router);
         }
-        posthog.capture('journal_entry_submitted');
+        posthog.capture('journal_entry_submitted'); // Track the number of journal entries submitted
     }
 
     return(
