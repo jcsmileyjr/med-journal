@@ -6,12 +6,12 @@ import Diary from '../../images/diary.png';
 import Leaf from '../../images/leaf.png';
 
 /**
- * A function that renders the dashboard component within the landing page.
- *
+ * Component that renders the dashboard prompts and view logs button within the landing page.
  */
 const Dashboard = () => {
     return (
-        <section className='flex flex-col'>            
+        <section className='flex flex-col'>   
+            {/* List of Dashboard prompts */}
             <div className='flex flex-col items-start mx-auto'>
                 <h3 className='text-left text-primaryGreen font-semibold text-2xl mt-12'>Click a writing prompt below</h3>    
                 <DashboardPrompt content="What&apos;s on your mind"/>
@@ -21,11 +21,15 @@ const Dashboard = () => {
                 <DashboardPrompt content="Unexplained Medical issue"/>
                 <DashboardPrompt content="Prescription medicine"/> 
             </div>
+
+            {/* View logs button */}
             <div className="mt-12">
                 <Link className=' flex justify-center items-center w-2/3 md:w-1/3 m-auto'  href='/logs'>
                     <button type="button" className="bg-primaryGreen hover:bg-primaryGreen/90 w-full text-white font-bold  py-2 px-4 rounded-full">View Logs</button>
                 </Link>                    
             </div>  
+
+            {/* Why Journal section */}
             <div className='flex justify-center flex-col-reverse md:flex-row lg:w-2/3 md:mx-auto'>
                 <Image src={Diary} className='h-40/' alt="" width={200} height={200} style={{width:'auto', height:'20rem' }} />
                 <div>

@@ -1,11 +1,14 @@
 "use client"
-// import moment from 'moment'; // NPM module that converts date objects to strings
 import {useState} from 'react';
 import getData from '../utils/getData';
 import Header from '../components/header/header';
 import Log from '../components/log/log';
 import ContentType from '../types/contentType';
 
+/**
+ * Page that renders all journal entries.
+ * Marked as client because the getData function grabs data from local storage.
+ */
 const Logs = () => {
     const [content, setContent] = useState<ContentType[]>(getData());
 

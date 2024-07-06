@@ -1,9 +1,9 @@
 "use client"
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import moment from 'moment'; // NPM module that converts date objects to strings
-import saveData from '@/app/utils/saveData';
-import getData from '../../utils/getData';
-import editData from '@/app/utils/editData';
+import getData from '../../utils/getData'; // Returns an unenncrypted sorted (by date) array of journal entries from local storage
+import saveData from '@/app/utils/saveData'; // Encrypts and saves a journal entry to local storage. Afterward, redirects the user to the Logs page.
+import editData from '@/app/utils/editData'; // Encrypts and edits a journal entry to local storage. Afterward, redirects the user to the Logs page.
 import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
@@ -11,23 +11,33 @@ import SubmitIcon from '../../images/submit-icon.png';
 import BlackCheck from '../../images/BlackCheck.png'
 import ContentType from '@/app/types/contentType';
 
-const Author = ({content, id}: { content: string, id: string, tag: string }) => {
+/**
+ * Component that renders on the Journal & Edit pages that allows a user to create a journal entry. 
+ * @param {string} content - The tag of the blank journal entry used on the page title.
+ * @param {string} id - The id of the journal entry to be edited. Can be 'none' (meaning not an previous entry)
+ * @returns 
+ */
+const Author = ({content, id}: { content: string, id: string}) => {
     const router = useRouter() // Routes a user to another page
 
-    const [showSummary, setShowSummary] = useState(false);
-    const [showContent, setShowContent] = useState(true);
+    const [showSummary, setShowSummary] = useState(false); // Toggle the state of the summary details element
+    const [showContent, setShowContent] = useState(true); // Toggle the state of the content details element
     const [userContent, setUserContent] = useState('');
     const [userSummary, setUserSummary] = useState('');
-    const [title, setTitle] = useState(content);
+    const [title, setTitle] = useState(content); // The tag of the journal entry
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
-    const [submitError, setSubmitError] = useState(false);
+    const [submitError, setSubmitError] = useState(false); // error state for the submit button
 
+    /**
+     * useEffect hook that check if there an id in the url. If there is an id, 
+     * it will populate the elements with the data from the log with the id. 
+     */
     useEffect(() => {
         // If there is an id, this means that the user is editing an entry
         if(id !== 'none') {
             const data = getData();
             const log= data.find((log) => log.id === id);
-            console.log("date", log?.date)
+
             if (log !== undefined) {
                 setUserContent(log.content);
                 setUserSummary(log.summary);
@@ -38,6 +48,7 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
         }
     }, [])
 
+    // Toggle the state of the summary and content details elements at the same time
     const toggleSummary = (e: any) => {
         e.preventDefault(); // Prevent the default behavior of the details element
         if (showContent) {
@@ -49,12 +60,14 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
         }
     }
 
+    // Function that saves the data or edit a previous entry based on if the id is in the url
     const handleSubmit = () => {
+        // Prevent the user from submitting an empty or incomplete entry
         if (userContent === '' || userSummary === '') {
             setSubmitError(true);
             return
         }
-        // create a data object with the userContent, userSummary, tag, and logDate
+       
         let data: ContentType = {"content": "", "summary": "", "tag": "", "date": "", "id": ""};
         if (id !== 'none') {
             data = {
@@ -81,6 +94,7 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
 
     return(
         <section className='mt-8 md:w-2/3 md:mx-auto'>
+            {/* Toggleable content's UI */}
             <details onClick={(e) =>toggleSummary(e)} open={showContent}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
                     <h2 className="text-center text-xl text-pretty">Let&apos;s talk about your {(title).toLowerCase()}</h2>
@@ -94,6 +108,7 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
             }
             <hr className="border-t border-gray-300 my-4" />
 
+            {/* Toggleable summary's UI */}
             <details onClick={(e) =>toggleSummary(e)} open={showSummary}>
                 <summary className="appearance-none list-none mb-4 text-primaryGreen">
                     <h2 className="text-center text-xl text-pretty">Please provide a brief summary for the title</h2>
@@ -111,14 +126,21 @@ const Author = ({content, id}: { content: string, id: string, tag: string }) => 
                 </>
             }
             <hr className="border-t border-gray-300 my-4" />
+            
+            {/* Date UI */}
             <div className="flex flex-col items-center justify-center mb-4">
                 <input value={logDate} id="date" onChange={(e) => setLogDate(e.target.value)} type="date" className="appearance-none list-none text-primaryGreen" />
                 <label htmlFor="date" className="text-black">Date</label>
             </div>
+
+            {/* Submit button UI */}
             <div className='flex flex-col items-center justify-center gap-4 mt-6'>
+                {/* Show the black checkmark if the user has not filled out the form */}
                 {(userContent === '' || userSummary === '') &&
                     <Image onClick={() => handleSubmit()} src={BlackCheck} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
                 }
+                
+                {/* Show the green checkmark if the user has filled out the form */}
                 {userContent !== '' && userSummary !== '' &&
                     <Image onClick={() => handleSubmit()} src={SubmitIcon} className='h-12' alt="" width={20} height={100} style={{width:'auto' }} />
                 }
