@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { PHProvider } from './providers'
+import dynamic from 'next/dynamic'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,6 +11,10 @@ export const metadata: Metadata = {
   description: 'An app to journal your medical journey in your own authentic  voice.',
 }
 
+const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
+  ssr: false,
+})
+
 export default function RootLayout({
   children,
 }: {
@@ -16,7 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <PHProvider>
+        <PostHogPageView />
+        <body className={inter.className}>{children}</body>
+      </PHProvider>
     </html>
   )
 }
