@@ -9,7 +9,7 @@ const EditEntry = ({ params }: { params: { id: string, tag: string } }) => {
     return (
         <main className="flex min-h-screen flex-col p-8 md:p-24 md:pt-8">
             <Header displayBack={true} />
-            <Author content={"none"} id={id} tag={tag} />   
+            <Author content={"none"} id={id} />   
         </main>
     )
 }
