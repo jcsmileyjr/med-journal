@@ -11,9 +11,7 @@ export const metadata: Metadata = {
   description: 'An app to journal your medical journey in your own authentic  voice.',
 }
 
-const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
-  ssr: false,
-})
+const PostHogPageView = dynamic(() => import('./PostHogPageView'))
 
 export default function RootLayout({
   children,
