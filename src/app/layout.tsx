@@ -11,8 +11,6 @@ export const metadata: Metadata = {
   description: 'An app to journal your medical journey in your own authentic  voice.',
 }
 
-const PostHogPageView = dynamic(() => import('./PostHogPageView'))
-
 export default function RootLayout({
   children,
 }: {
@@ -21,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <PHProvider>
-        <PostHogPageView />
         <body className={inter.className}>{children}</body>
       </PHProvider>
     </html>
