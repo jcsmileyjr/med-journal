@@ -14,7 +14,7 @@ const Header = ({displayBack}: {displayBack: boolean}) => {
             <Link aria-label="Home page" href='/'>
                 <Image src={BookIcon} className='h-4' alt="" width={20} height={50} style={{width:'auto', height:'auto' }} />
             </Link>
-            <h1 className='text-primaryGreen font-bold text-3xl'>Medical Journal</h1>
+            <h1 className='text-primaryGreen font-bold text-3xl text-center'>Medical Journal</h1>
 
             {/* Profile icon that returns to the setting page or back to the home page */}
             {displayBack && <Link aria-label="Home page" href='/'><p className='text-red-800 text-base'>Back</p></Link>}
