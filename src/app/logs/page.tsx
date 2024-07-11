@@ -1,5 +1,5 @@
 "use client"
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import getData from '../utils/getData';
 import Header from '../components/header/header';
 import Log from '../components/log/log';
@@ -10,7 +10,12 @@ import ContentType from '../types/contentType';
  * Marked as client because the getData function grabs data from local storage.
  */
 const Logs = () => {
-    const [content, setContent] = useState<ContentType[]>(getData());
+    const [content, setContent] = useState<ContentType[]>([]);
+
+    useEffect(() => {
+        const data = getData();
+        setContent(data);
+    }, []);
 
     return (
         <main className="flex min-h-screen flex-col p-8 md:p-24 md:pt-8">
