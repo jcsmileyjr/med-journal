@@ -39,12 +39,14 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
         const setupState = async () => {
             // If there is an _id, this means that the user is editing an entry
             if(_id !== 'none') {
-                const data = await getData();
+                const data: ContentType[] | undefined = await getData();
                 if (data === undefined) {
+                    console.log("Undefined from author.tsx");
                     return
                 } else {
+                    console.log("test the data: ", data);
                     const log= data.find((log) => log._id === _id);
-        
+        console.log("test the log: ", log);
                     if (log !== undefined) {
                         setUserContent(log.content);
                         setUserSummary(log.summary);

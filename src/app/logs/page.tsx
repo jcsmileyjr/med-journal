@@ -14,7 +14,10 @@ const Logs = () => {
 
     useEffect(() => {
         const setupState = async () => {
-            const data: ContentType[] = await getData();
+            const data: ContentType[] | undefined = await getData();
+            if (data === undefined) {
+                return
+            }
             setContent(data);            
         }
 
