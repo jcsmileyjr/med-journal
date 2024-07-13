@@ -16,38 +16,47 @@ import ContentType from '@/app/types/contentType';
 /**
  * Component that renders on the Journal & Edit pages that allows a user to create a journal entry. 
  * @param {string} content - The tag of the blank journal entry used on the page title.
- * @param {string} id - The id of the journal entry to be edited. Can be 'none' (meaning not an previous entry)
+ * @param {string} _id - The _id of the journal entry to be edited. Can be 'none' (meaning not an previous entry)
  * @returns 
  */
-const Author = ({content, id}: { content: string, id: string}) => {
+const Author = ({content, _id}: { content: string, _id: string}) => {
     const router = useRouter() // Routes a user to another page
 
     const [showSummary, setShowSummary] = useState(false); // Toggle the state of the summary details element
     const [showContent, setShowContent] = useState(true); // Toggle the state of the content details element
     const [userContent, setUserContent] = useState('');
     const [userSummary, setUserSummary] = useState('');
+    // const [logRev, setLogRev] = useState('');
     const [title, setTitle] = useState(content); // The tag of the journal entry
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
     const [submitError, setSubmitError] = useState(false); // error state for the submit button
 
     /**
-     * useEffect hook that check if there an id in the url. If there is an id, 
-     * it will populate the elements with the data from the log with the id. 
+     * useEffect hook that check if there an _id in the url. If there is an _id, 
+     * it will populate the elements with the data from the log with the _id. 
      */
     useEffect(() => {
-        // If there is an id, this means that the user is editing an entry
-        if(id !== 'none') {
-            const data = getData();
-            const log= data.find((log) => log.id === id);
-
-            if (log !== undefined) {
-                setUserContent(log.content);
-                setUserSummary(log.summary);
-                const newDate = moment(log.date).format('YYYY-MM-DD')
-                setLogDate(newDate);
-                setTitle(log.tag);
-            }
-        }
+        const setupState = async () => {
+            // If there is an _id, this means that the user is editing an entry
+            if(_id !== 'none') {
+                const data = await getData();
+                if (data === undefined) {
+                    return
+                } else {
+                    const log= data.find((log) => log._id === _id);
+        
+                    if (log !== undefined) {
+                        setUserContent(log.content);
+                        setUserSummary(log.summary);
+                        const newDate = moment(log.date).format('YYYY-MM-DD')
+                        setLogDate(newDate);
+                        setTitle(log.tag);
+                        // setLogRev(log._rev);
+                    }
+                }                
+            }            
+        };
+        setupState();
     }, [])
 
     // Toggle the state of the summary and content details elements at the same time
@@ -62,22 +71,23 @@ const Author = ({content, id}: { content: string, id: string}) => {
         }
     }
 
-    // Function that saves the data or edit a previous entry based on if the id is in the url
+    // Function that saves the data or edit a previous entry based on if the _id is in the url
     const handleSubmit = () => {
         // Prevent the user from submitting an empty or incomplete entry
         if (userContent === '' || userSummary === '') {
             setSubmitError(true);
             return
         }
-       
-        let data: ContentType = {"content": "", "summary": "", "tag": "", "date": "", "id": ""};
-        if (id !== 'none') {
+    
+        let data: ContentType = {"content": "", "summary": "", "tag": "", "date": "", "_id": ""};
+        if (_id !== 'none') {
             data = {
                 "content": userContent,
                 "summary": userSummary,
                 "tag": title,
                 "date" : moment(logDate).format('MM-DD-YYYY'),
-                "id": id
+                "_id": _id,
+                // "_rev": (Number(logRev) + 1).toString()
             };
 
             editData(data, router);
@@ -87,7 +97,8 @@ const Author = ({content, id}: { content: string, id: string}) => {
                 "summary": userSummary,
                 "tag": title,
                 "date" : moment(logDate).format('MM-DD-YYYY'),
-                "id": uuidv4()
+                "_id": uuidv4(),
+                // "_rev": "0"
             };
             saveData(data, router);
         }
@@ -150,8 +161,8 @@ const Author = ({content, id}: { content: string, id: string}) => {
                     <p className='text-red-800 text-base'>Must fill out all fields</p>
                 }                
             </div>
-            {id !== 'none' &&
-                <DeleteEntry id={id} />
+            {_id !== 'none' &&
+                <DeleteEntry _id={_id} />
             }
         </section>
     )

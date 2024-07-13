@@ -11,7 +11,7 @@ const editData = (data: ContentType, router: any) => {
 console.log("editData data", data);
     if (typeof previousData === "string") {
         let contentArray = JSON.parse(previousData);
-        const index = contentArray.findIndex((item: ContentType) => item.id === data.id);
+        const index = contentArray.findIndex((item: ContentType) => item._id === data._id);
         contentArray[index] = data;
         secureLocalStorage.setItem("medical-journal", JSON.stringify(contentArray));
     } else {

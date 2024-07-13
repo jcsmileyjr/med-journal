@@ -3,5 +3,5 @@ export default interface ContentType {
     summary: string
     tag: string
     date: string
-    id: string 
+    _id: string
 };
