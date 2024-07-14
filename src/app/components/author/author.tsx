@@ -56,7 +56,7 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
             }            
         };
         setupState();
-    }, [])
+    }, [_id])
 
     // Toggle the state of the summary and content details elements at the same time
     const toggleSummary = (e: any) => {
