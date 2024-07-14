@@ -13,8 +13,15 @@ const Logs = () => {
     const [content, setContent] = useState<ContentType[]>([]);
 
     useEffect(() => {
-        const data = getData();
-        setContent(data);
+        const setupState = async () => {
+            const data: ContentType[] | undefined = await getData();
+            if (data === undefined) {
+                return
+            }
+            setContent(data);            
+        }
+
+        setupState();
     }, []);
 
     return (
@@ -25,7 +32,7 @@ const Logs = () => {
                 {content.length < 1 && <h1>Loading...</h1>}
                 {content.length > 0 &&
                     content.map((log) => (
-                        <Log key={log.id} data={log} />
+                        <Log key={log._id} data={log} />
                     ))
                 }
             </section>

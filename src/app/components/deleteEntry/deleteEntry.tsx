@@ -5,12 +5,12 @@ import deleteData from '@/app/utils/deleteData';
 import Image from 'next/image';
 import Delete from '../../images/delete.png';
 
-const DeleteEntry = ({id}: {id: string}) => {
+const DeleteEntry = ({_id}: {_id: string}) => {
     const router = useRouter();
     const [toggleUI, setToggleUI] = useState(false);
 
     const deleteEntry = () => {
-        deleteData(id, router);
+        deleteData(_id, router);
     }
 
     return (
