@@ -1,7 +1,7 @@
 import moment from 'moment'; // NPM module that converts date objects to strings
 import ContentType from '../types/contentType';
-// import PouchDB from 'pouchdb';
-import PouchDB from 'pouchdb-browser';
+import PouchDB from 'pouchdb';
+//import PouchDB from 'pouchdb-browser';
 import DefaultLog from '../data/defaultLog.json';
 
 // Returns an unencrypted sorted (by date) array of journal entries from local storage
