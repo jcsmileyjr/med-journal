@@ -14,17 +14,6 @@ const saveData = async (data: ContentType, router: any) => {
     } catch (err) {
         console.log("Error saving data to PouchDB ", err);
     }
-
-    // OLD CODE BELOW
-    let previousData = secureLocalStorage.getItem("medical-journal");
-console.log("saveData ran", data);
-    if (typeof previousData === "string") {
-        let contentArray = JSON.parse(previousData);
-        contentArray.push(data);
-        secureLocalStorage.setItem("medical-journal", JSON.stringify(contentArray));
-    } else {
-        secureLocalStorage.setItem("medical-journal", JSON.stringify([data]));
-    }
     router.push("/logs")
 }
 
