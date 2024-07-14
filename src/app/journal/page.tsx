@@ -15,6 +15,7 @@ const Journal = () => {
         search = "Test"
     }
 
+    // Made because of Netlfy build issue due to pouchdb in the getData function. Force skip creating in server.
     const AuthorComponent = dynamic(() => import('../components/author/author'), {
         ssr: false,
         loading: () => <div>Loading...</div>
