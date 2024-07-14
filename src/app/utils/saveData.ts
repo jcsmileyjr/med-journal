@@ -1,4 +1,3 @@
-import  secureLocalStorage  from  "react-secure-storage";
 import ContentType from '../types/contentType';
 import PouchDB from 'pouchdb';
 /**

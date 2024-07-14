@@ -44,16 +44,13 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
                     console.log("Undefined from author.tsx");
                     return
                 } else {
-                    console.log("test the data: ", data);
                     const log= data.find((log) => log._id === _id);
-        console.log("test the log: ", log);
                     if (log !== undefined) {
                         setUserContent(log.content);
                         setUserSummary(log.summary);
                         const newDate = moment(log.date).format('YYYY-MM-DD')
                         setLogDate(newDate);
                         setTitle(log.tag);
-                        // setLogRev(log._rev);
                     }
                 }                
             }            
@@ -89,7 +86,6 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
                 "tag": title,
                 "date" : moment(logDate).format('MM-DD-YYYY'),
                 "_id": _id,
-                // "_rev": (Number(logRev) + 1).toString()
             };
 
             editData(data, router);
@@ -100,7 +96,6 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
                 "tag": title,
                 "date" : moment(logDate).format('MM-DD-YYYY'),
                 "_id": uuidv4(),
-                // "_rev": "0"
             };
             saveData(data, router);
         }
