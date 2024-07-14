@@ -2,7 +2,7 @@
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import posthog from 'posthog-js'
 import moment from 'moment'; // NPM module that converts date objects to strings
-import {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import DeleteEntry from '../deleteEntry/deleteEntry';
@@ -31,10 +31,15 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
     const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
     const [submitError, setSubmitError] = useState(false); // error state for the submit button
 
-    const setupState = useCallback(async()=> {
+    /**
+     * useEffect hook that check if there an _id in the url. If there is an _id, 
+     * it will populate the elements with the data from the log with the _id. 
+     */
+    useEffect(() => {
+        const setupState = async () => {
+            const data: ContentType[] | undefined = await getData();
             // If there is an _id, this means that the user is editing an entry
             if(_id !== 'none') {
-                const data: ContentType[] | undefined = await getData();
                 if (data === undefined) {
                     console.log("Undefined from author.tsx");
                     return
@@ -48,17 +53,10 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
                         setTitle(log.tag);
                     }
                 }                
-            } 
-    }, []);
-    
-    /**
-     * useEffect hook that check if there an _id in the url. If there is an _id, 
-     * it will populate the elements with the data from the log with the _id. 
-     */
-    useEffect(() => {
-        setupState()
-    }, [setupState])
-
+            }            
+        };
+        setupState();
+    }, [_id])
 
     // Toggle the state of the summary and content details elements at the same time
     const toggleSummary = (e: any) => {
