@@ -1,7 +1,7 @@
 import ContentType from '../types/contentType';
 import PouchDB from 'pouchdb';
 /**
- * Encrypts and saves a journal entry to local storage. Afterward, redirects the user to the Logs page.
+ * Encrypts and saves a journal entry to the IndexDB using pouchdb. Afterward, redirects the user to the Logs page.
  * @param {ContentType} data - The data to be saved.
  * @param {any} router - The router object.
  */

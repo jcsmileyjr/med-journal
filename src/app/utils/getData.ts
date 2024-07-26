@@ -1,10 +1,9 @@
 import dayjs from 'dayjs'; // NPM module that converts date objects to strings
 import ContentType from '../types/contentType';
 import PouchDB from 'pouchdb';
-//import PouchDB from 'pouchdb-browser';
 import DefaultLog from '../data/defaultLog.json';
 
-// Returns an unencrypted sorted (by date) array of journal entries from local storage
+// Returns an unencrypted sorted (by date) array of journal entries from IndexDB
 const getData = async () => {
     const db = new PouchDB('medical-journal');
     try {

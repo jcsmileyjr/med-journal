@@ -1,7 +1,7 @@
 "use client"
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
-import posthog from 'posthog-js';
-import dayjs from 'dayjs';
+import posthog from 'posthog-js'; // NPM module that sends data to PostHog
+import dayjs from 'dayjs'; // NPM module that converts date objects to strings
 import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
