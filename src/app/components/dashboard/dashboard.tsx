@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image'
 import DashboardPrompt from '../dashboardPrompt/DashboardPrompt';
+import QuickAdd from '../quickAdd/quickAdd';
 import Diary from '../../images/diary.png';
 import Leaf from '../../images/leaf.png';
 
@@ -21,6 +22,8 @@ const Dashboard = () => {
                 <DashboardPrompt content="Unexplained Medical issue"/>
                 <DashboardPrompt content="Prescription medicine"/> 
             </div>
+
+            <QuickAdd />
 
             {/* View logs button */}
             <div className="mt-12">
