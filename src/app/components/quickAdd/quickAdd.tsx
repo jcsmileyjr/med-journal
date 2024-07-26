@@ -1,7 +1,7 @@
 "use client"
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
 import posthog from 'posthog-js';
-import moment from 'moment'; // NPM module that converts date objects to strings
+import dayjs from 'dayjs';
 import {useState} from 'react';
 import { useRouter } from 'next/navigation';
 import ContentType from '@/app/types/contentType';
@@ -39,7 +39,7 @@ const QuickAdd = () => {
     const handleChange = (e: any) => {
         let test = Array.from(e.target.selectedOptions).map((option) => (option as HTMLOptionElement).value);
         console.log(test);
-        setEntry({...entry, "content": e.target.value, "summary":"Health Issues", "tag": "Wellness Check-in", "date": moment().format('MM-DD-YYYY'), "_id": uuidv4()});
+        setEntry({...entry, "content": e.target.value, "summary":"Health Issues", "tag": "Wellness Check-in", "date": dayjs().format('MM-DD-YYYY'), "_id": uuidv4()});
     }
 
     return (

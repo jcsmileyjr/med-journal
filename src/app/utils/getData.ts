@@ -1,4 +1,4 @@
-import moment from 'moment'; // NPM module that converts date objects to strings
+import dayjs from 'dayjs'; // NPM module that converts date objects to strings
 import ContentType from '../types/contentType';
 import PouchDB from 'pouchdb';
 //import PouchDB from 'pouchdb-browser';
@@ -17,7 +17,7 @@ const getData = async () => {
         } else {
             let data: ContentType[] = result.rows.map((row: any) => row.doc);
             //console.log("getData() - Database data: ", data);
-            let sortedLogs = data.sort((a, b) => moment(b.date, 'MM-DD-YYYY').diff(moment(a.date, 'MM-DD-YYYY')));
+            let sortedLogs = data.sort((a, b) => dayjs(b.date, 'MM-DD-YYYY').diff(dayjs(a.date, 'MM-DD-YYYY')));
             return sortedLogs;
         }
 
