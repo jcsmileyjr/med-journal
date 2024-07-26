@@ -55,7 +55,7 @@ const QuickAdd = () => {
     return (
         <div className='flex flex-col items-start mt-12 md:mt-12 md:m-auto md:w-1/3'>
             <label htmlFor="quickSelect" className="text-left text-primaryGreen font-semibold text-2xl ">Quick Add</label>
-            <select onChange={(e) => handleChange(e)} name="quickSelect" id="quickSelect" className="h-18 mb-6 mt-2 w-full text-md font-medium text-black bg-gray-50 border border-4 border-primaryGreen text-gray-900 focus:ring-blue-500 focus:border-blue-500 block p-2.5 rounded-lg" multiple>
+            <select onChange={(e) => handleChange(e)} name="quickSelect" id="quickSelect" className="h-18 mb-6 mt-2 w-full text-lg font-medium text-black bg-gray-50 border border-4 border-primaryGreen text-gray-900 focus:ring-blue-500 focus:border-blue-500 block p-2.5 rounded-lg" multiple>
                 <option value="">Select an Issue</option>
                 {quickList.map((item, index) => <option key={`${index}`} value={item}>{item}</option>)}
             </select>
