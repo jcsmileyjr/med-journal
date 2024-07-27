@@ -27,6 +27,9 @@ Journal data point
 - **Netlify** is the hosting platform employed for hosting the application.
 - **React-Secure-Storage** is a library specializing in encrypting local data and providing a unique key for each browser.
 - **uuid** a library to create unique ids
+- **Day.js** a library that converts date objects to strings
+- **PostHog** a library that sends data to PostHog track the number of journal entries submitted.
+- **CouchDB** a libray that saves data to the broswer's IndexDB.
 
 ## Development Thoughts
 1. If the user chooses to password protect the app, then a pop up should start the app.

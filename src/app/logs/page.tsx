@@ -1,6 +1,5 @@
 "use client"
 import Header from '../components/header/header';
-import Content from '../components/content/content';
 import dynamic from 'next/dynamic';
 /**
  * Page that renders all journal entries.

@@ -1,7 +1,9 @@
 "use client"
 import Link from 'next/link';
 import Image from 'next/image'
+import dynamic from 'next/dynamic';
 import DashboardPrompt from '../dashboardPrompt/DashboardPrompt';
+import QuickAdd from '../quickAdd/quickAdd';
 import Diary from '../../images/diary.png';
 import Leaf from '../../images/leaf.png';
 
@@ -9,6 +11,12 @@ import Leaf from '../../images/leaf.png';
  * Component that renders the dashboard prompts and view logs button within the landing page.
  */
 const Dashboard = () => {
+    // Because of Netlfy build issue due to pouchdb in the saveData function. Force skip creating in server.
+    const QuickAddComponent = dynamic(() => import('../quickAdd/quickAdd'), {
+        ssr: false,
+        loading: () => <div>Loading...</div>
+    });    
+
     return (
         <section className='flex flex-col'>   
             {/* List of Dashboard prompts */}
@@ -21,6 +29,8 @@ const Dashboard = () => {
                 <DashboardPrompt content="Unexplained Medical issue"/>
                 <DashboardPrompt content="Prescription medicine"/> 
             </div>
+
+            <QuickAddComponent />
 
             {/* View logs button */}
             <div className="mt-12">

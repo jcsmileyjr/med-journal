@@ -17,6 +17,8 @@ This project is under construction!!!!
 - **TailwindCSS** is a CSS library utilized to quickly style the application. 
 - **Jest** serves as a component testing framework. 
 - **Netlify** is the hosting platform employed for hosting the application.
+- **PostHog** a library that sends data to PostHog track the number of journal entries submitted.
+- **CouchDB** a libray that saves data to the broswer's IndexDB.
 
 ## Get Started
 1. Clone the repo

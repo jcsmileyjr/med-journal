@@ -1,7 +1,7 @@
 "use client"
 import {v4 as uuidv4} from 'uuid'; // NPM module that creates a random ID number
-import posthog from 'posthog-js'
-import moment from 'moment'; // NPM module that converts date objects to strings
+import posthog from 'posthog-js'; // NPM module that sends data to PostHog
+import dayjs from 'dayjs'; // NPM module that converts date objects to strings
 import {useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
@@ -28,7 +28,7 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
     const [userSummary, setUserSummary] = useState('');
     // const [logRev, setLogRev] = useState('');
     const [title, setTitle] = useState(content); // The tag of the journal entry
-    const [logDate, setLogDate] = useState(moment().format('YYYY-MM-DD'));
+    const [logDate, setLogDate] = useState(dayjs().format('YYYY-MM-DD'));
     const [submitError, setSubmitError] = useState(false); // error state for the submit button
 
     /**
@@ -48,7 +48,7 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
                     if (log !== undefined) {
                         setUserContent(log.content);
                         setUserSummary(log.summary);
-                        const newDate = moment(log.date).format('YYYY-MM-DD')
+                        const newDate = dayjs(log.date).format('YYYY-MM-DD')
                         setLogDate(newDate);
                         setTitle(log.tag);
                     }
@@ -84,7 +84,7 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
                 "content": userContent,
                 "summary": userSummary,
                 "tag": title,
-                "date" : moment(logDate).format('MM-DD-YYYY'),
+                "date" : dayjs(logDate).format('MM-DD-YYYY'),
                 "_id": _id,
             };
 
@@ -94,7 +94,7 @@ const Author = ({content, _id}: { content: string, _id: string}) => {
                 "content": userContent,
                 "summary": userSummary,
                 "tag": title,
-                "date" : moment(logDate).format('MM-DD-YYYY'),
+                "date" : dayjs(logDate).format('MM-DD-YYYY'),
                 "_id": uuidv4(),
             };
             saveData(data, router);
